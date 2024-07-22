@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile</title>
+  </head>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background-color: antiquewhite;
+    }
+    .post {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+    
+        .post:hover{
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1)
+        }
+
+    .name {
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .favorite-song, .favorite-movie {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        strong {
+            color: #000;
+        }
+  </style>
+  <body>
+    <h1>Welcome, {{ user['name'] }}</h1>
+    <p>Favourite Movie: {{ user['fav_movie'] }}</p>
+    <p>Favourite Song: {{ user['fav_song'] }}</p>
+    <h2>All Users</h2>
+    <ul>
+      {% for user_info in all_users.values() %}
+      <div class="post" >
+        <h2 class="name">{{ user_info['name'] }}</h2>
+        <p class="favorite-movie"><strong>Favorite Movie:</strong> {{ user_info['fav_movie'] }}</p>
+        <p class="favorite-song"><strong>Favorite Song:</strong> {{ user_info['fav_song'] }}</p>
+      </div>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </body>
+</html>
